@@ -296,12 +296,47 @@ module.exports = {
           },
           {
             test: /\.css$/,
+            exclude: optInCssModules
+              ? [/\.module\.css$/, paths.backpackModulesRegex]
+              : [],
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
+                  modules: !optInCssModules,
+                  localIdentName: '[local]-[hash:base64:5]',
+                  getLocalIdent: getLocalIdent,
+                },
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: postcssOptions,
+              },
+            ],
+          },
+          {
+            test: {
+              and: [
+                () => optInCssModules,
+                {
+                  or: [
+                    /\.module\.css$/,
+                    { and: [paths.backpackModulesRegex, /\.css$/] },
+                  ],
+                },
+              ],
+            },
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                  modules: true,
+                  localIdentName: '[local]-[hash:base64:5]',
+                  getLocalIdent: getLocalIdent,
                 },
               },
               {

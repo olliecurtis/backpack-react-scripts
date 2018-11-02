@@ -141,8 +141,12 @@ function build(previousFileSizes) {
       // file output in ExtractTextPlugin. This is not needed so lets clean
       // it up to avoid confusion.
       var ssrCssPath = path.join(paths.appBuild, 'ssr.css');
+      var ssrCssMapPath = path.join(paths.appBuild, 'ssr.css.map');
       if (fs.existsSync(ssrCssPath)) {
         fs.unlinkSync(ssrCssPath);
+      }
+      if (fs.existsSync(ssrCssMapPath)) {
+        fs.unlinkSync(ssrCssMapPath);
       }
 
       const messages = formatWebpackMessages(stats.toJson({}, true));

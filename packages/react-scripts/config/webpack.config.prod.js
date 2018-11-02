@@ -341,6 +341,9 @@ module.exports = {
           },
           {
             test: /\.css$/,
+            exclude: optInCssModules
+              ? [/\.module\.css$/, paths.backpackModulesRegex]
+              : [],
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -357,6 +360,53 @@ module.exports = {
                         importLoaders: 1,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
+                        modules: !optInCssModules,
+                        localIdentName: '[local]-[hash:base64:5]',
+                        getLocalIdent: getLocalIdent,
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: postcssOptions,
+                    },
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+            test: {
+              and: [
+                () => optInCssModules,
+                {
+                  or: [
+                    /\.module\.css$/,
+                    { and: [paths.backpackModulesRegex, /\.css$/] },
+                  ],
+                },
+              ],
+            },
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        sourceMap: shouldUseSourceMap,
+                        modules: true,
+                        localIdentName: '[local]-[hash:base64:5]',
+                        getLocalIdent: getLocalIdent,
                       },
                     },
                     {
