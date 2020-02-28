@@ -1,5 +1,9 @@
 # `backpack-react-scripts` Change Log
 
+## 7.0.6 (Pending)
+
+- Added support for loadable components.
+
 ## 7.0.5 - 2020-01-10
 
 ### Fixed
