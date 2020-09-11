@@ -44,7 +44,21 @@ const config = configFactory('development');
 const appName = require(paths.appPackageJson).name;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
-const compiler = createCompiler(webpack, config, appName, undefined, useYarn);
+const useTypeScript = fs.existsSync(paths.appTsConfig);
+const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
+
+const createCompilerOpts = {
+  appName,
+  config,
+  devSocket: undefined,
+  urls: undefined,
+  useYarn,
+  useTypeScript,
+  tscCompileOnError,
+  webpack,
+};
+
+const compiler = createCompiler(createCompilerOpts);
 statusFile.init(compiler, paths.appBuildSsr);
 
 compiler.watch(
