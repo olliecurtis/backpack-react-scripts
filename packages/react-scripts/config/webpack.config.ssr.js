@@ -116,11 +116,11 @@ module.exports = function(webpackEnv) {
       //     : {},
       // },
       {
-        // Since v2.0.0 css-loader/locals was removed in favour of exportOnlyLocals option
+        // In v3.0.0 css-loader/locals was removed in favour of onlyLocals option
         // So adding the option here in replacement as per
-        // https://github.com/webpack-contrib/css-loader#exportonlylocals
+        // https://github.com/webpack-contrib/css-loader/tree/v3.4.2#onlylocals
         loader: require.resolve('css-loader'),
-        options: { ...cssOptions, exportOnlyLocals: true },
+        options: { ...cssOptions, onlyLocals: true },
       },
       {
         // Options for PostCSS as we reference these options twice
@@ -362,7 +362,7 @@ module.exports = function(webpackEnv) {
       ],
     },
     module: {
-      noParse: [/iconv-loader\.js$/, /colors\.js$/], // https://github.com/webpack/webpack/issues/3078#issuecomment-400697407
+      noParse: /iconv-loader\.js$/, // https://github.com/webpack/webpack/issues/3078#issuecomment-400697407
       strictExportPresence: true,
       rules: [
         // Disable require.ensure as it's not a standard language feature.

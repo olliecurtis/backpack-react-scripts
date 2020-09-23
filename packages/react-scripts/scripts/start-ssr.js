@@ -32,18 +32,16 @@ verifyTypeScriptSetup();
 // @remove-on-eject-end
 
 const fs = require('fs');
-const { createCompiler } = require('react-dev-utils/WebpackDevServerUtils');
 const webpack = require('webpack');
-
-const configFactory = require('../config/webpack.config.ssr');
+const { createCompiler } = require('react-dev-utils/WebpackDevServerUtils');
 const paths = require('../config/paths');
+const configFactory = require('../config/webpack.config.ssr');
 
 const statusFile = require('./utils/statusFile');
 
 const config = configFactory('development');
 const appName = require(paths.appPackageJson).name;
 const useYarn = fs.existsSync(paths.yarnLockFile);
-
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
 
