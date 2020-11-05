@@ -1,5 +1,9 @@
 # `backpack-react-scripts` Change Log
 
+## 8.0.5
+
+- Updated `bpk-mixins` to latest version
+
 ## 8.0.4
 
 - Updated `bpk-mixins` to latest version `20.1.5`
@@ -11,7 +15,8 @@
 - Downgraded `sass-loader` to `7.3.1` due to issues with `node-sass` and functional changes to options.
 
 Rebased onto `upstream/master` v3.4.4 (6c009edface3ed63d0c7046f088c675a63c82fdb)
-  - Update `resolve-url-loader` to `3.1.2` to resolve security vunerability
+
+- Update `resolve-url-loader` to `3.1.2` to resolve security vunerability
 
 ## 8.0.2
 

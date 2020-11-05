@@ -1,6 +1,6 @@
 {
   "name": "@skyscanner/backpack-react-scripts",
-  "version": "8.0.4",
+  "version": "8.0.5",
   "description": "Backpack configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-preset-react-app": "^10.0.0",
     "bfj": "^7.0.2",
-    "bpk-mixins": "^20.1.5",
+    "bpk-mixins": "^20.1.7",
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "css-loader": "4.3.0",
